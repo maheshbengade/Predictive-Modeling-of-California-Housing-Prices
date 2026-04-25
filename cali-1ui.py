@@ -2,8 +2,12 @@ import streamlit as st
 import pickle
 import numpy as np
 
-# Load model (keep file in same folder)
-model = pickle.load(open("Linear_Regression_california.pkl", "rb"))
+try:
+    with open("Linear_Regression_california.pkl", "rb") as f:
+        model = pickle.load(f)
+    st.success("Model loaded successfully")
+except Exception as e:
+    st.error(f"Actual error: {e}")
 
 st.title("🏠 California House Price Prediction")
 
